@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.facengineer</groupId>
-    <artifactId>mainapp</artifactId>
+    <artifactId>Dolphin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mainapp</name>
+    <name>Dolphin</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -29,11 +29,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-
-
-
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

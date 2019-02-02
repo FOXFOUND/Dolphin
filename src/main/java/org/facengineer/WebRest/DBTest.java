@@ -18,7 +18,7 @@ public class DBTest {
         this.personModel = personModel;
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/person/")
     public String ForeachInsertValue() {
         List<Person> personlist = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
