@@ -17,11 +17,17 @@ public interface FileDao {
     Integer GetMaxID();
 
     @Insert("insert into FILE values(0,#{name},#{suffixname},#{filename},#{url},#{uploader_name})")
-    public boolean InsertFileValue(@Param("name") String FileName, @Param("suffixname") String SuffixName,@Param("filename") String filename, @Param("url") String FileUrl, @Param("uploader_name") String uploader_name);
+    public boolean InsertFileValue(@Param("name") String FileName, @Param("suffixname") String SuffixName, @Param("filename") String filename, @Param("url") String FileUrl, @Param("uploader_name") String uploader_name);
 
     @Select("Select id,name,filename,url from FILE where uploader_name = #{uploadername}")
     List<FileModel> GetFileListByUser(@Param("uploadername") String uploader_name);
 
     @Select("SELECT name,suffixname,filename FROM Dolphin.FILE where id = #{id}")
     FileModel GetNameByID(@Param("id") Integer id);
+
+    @Select("SELECT id,filename,url from Dolphin.FILE where suffixname like #{sn}")
+    List<FileModel> Fuzzy_GetFileListBySuffixName(@Param("sn") String sn);
+
+    @Select("CALL GetFotoListById(#{id})")
+    List<FileModel> GetFotoListByPosition(@Param("id") Integer id);
 }
