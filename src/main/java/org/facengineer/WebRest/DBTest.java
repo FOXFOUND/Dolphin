@@ -47,9 +47,6 @@ public class DBTest {
     @RequestMapping("/fuzzy/{suffixname}/")
     public BaseResponse Fuzzy_GetFileListBySuffixName(@PathVariable String suffixname) {
         List<FileModel> filelist = fd.Fuzzy_GetFileListBySuffixName("%" + suffixname);
-        for (FileModel _model : filelist) {
-            System.out.println(_model.getUrl());
-        }
         return new BaseResponse(RespCode.SUCCESS,filelist);
     }
 }
