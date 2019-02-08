@@ -41,13 +41,9 @@ public class FileUpload {
             return "上传失败";
         }
 
-        // 获取文件名
+        //获取文件名
         String fileName = file.getOriginalFilename();
-//        String caselsh = fileName.substring(0,fileName.lastIndexOf("."));
         String suffixName = fileName.substring(fileName.lastIndexOf("."));
-
-        // 解决中文问题，liunx下中文路径，图片显示问题
-        // fileName = UUID.randomUUID() + suffixName;
 
         File dest = new File(Configuration.FILEPATH + UploadFileName + suffixName);
 
