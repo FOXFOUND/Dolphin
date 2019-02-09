@@ -5,7 +5,7 @@
 ## Getting
 
 ```
-**The SpringBoot Application for Rest(Ful) Testing**
+The SpringBoot Application for Rest(Ful) Testing
 ```
 
 ## API
