@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File List</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th th:each="columnname : ${filecolumn}">
+            <border th:text="${columnname}"></border>
+        </th>
+    </tr>
+    <tr th:each="fileinfo : ${filelist}">
+        <td th:text="${fileinfo.getId()}"></td>
+        <td th:text="${fileinfo.getName()}"></td>
+        <td th:text="${fileinfo.getSuffixname()}"></td>
+        <td th:text="${fileinfo.getFilename()}"></td>
+        <td><a th:href="${fileinfo.getUrl()}" th:text="${fileinfo.getUrl()}"></a></td>
+        <td th:text="${fileinfo.getUploader_name()}"></td>
+    </tr>
+</table>
+</body>
+</html>

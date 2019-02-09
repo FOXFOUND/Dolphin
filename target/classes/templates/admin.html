@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HELLO WORLD</title>
+</head>
+<body>
+<form action="/upload/file" method="POST" enctype="multipart/form-data">
+    文件：<input type="file" name="file"/>
+    文件名:<input type="text" name="filename"/>
+    <input type="submit" />
+</form>
+<br/>
+<form action="/login" method="POST">
+    UserName：<input type="text" name="name"/>
+    Password:<input type="text" name="password"/>
+    <input type="submit" />
+</form>
+<br/>
+<a href="/list/">Sql List</a>
+<br/>
+<a href="/file/list/">File List</a>
+</body>
+</html>

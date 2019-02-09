@@ -21,6 +21,6 @@ The SpringBoot Application for Rest(Ful) Testing
 
 ## Contribution
 ```
-TangSmith zzt415107188@gmail.com
+TangSmith 415107188@qq.com
 ```
 [1]: https://raw.githubusercontent.com/gs-gs-gs/Dolphin/master/resources/Dolphin.png

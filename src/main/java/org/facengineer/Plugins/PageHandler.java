@@ -3,10 +3,7 @@ package org.facengineer.Plugins;
 import org.facengineer.DaoMapper.PlatformModel;
 import org.facengineer.Model.FileModel;
 import org.facengineer.Model.Person;
-
-import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 public class PageHandler extends InitialHandler {
     public PageHandler(PlatformModel _platformmodel) {
