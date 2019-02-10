@@ -27,6 +27,7 @@ public class PageHandler extends InitialHandler {
                     GetListById(PluginsConfig.PersonPageHandler_SqlCmd, start_id, PluginsConfig.PageMos, Person.class);
             return _result;
         } catch (Exception e) {
+
         }
         return null;
     }

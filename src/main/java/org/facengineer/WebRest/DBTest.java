@@ -7,6 +7,7 @@ import org.facengineer.Model.FileModel;
 import org.facengineer.Model.Person;
 import org.facengineer.Plugins.PageHandler;
 import org.facengineer.PublicTools.BaseResponse;
+import org.facengineer.PublicTools.LOG;
 import org.facengineer.PublicTools.RespCode;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ public class DBTest {
     private FileDao fd;
     private PlatformModel platformModel;
     private PageHandler _handler;
+    LOG _log = new LOG(DBTest.class);
 
     public DBTest(PersonModel personModel, FileDao fd, PlatformModel platformModel) {
         this.personModel = personModel;
@@ -60,6 +62,7 @@ public class DBTest {
     @RequestMapping("/person/{start_id}/")
     public BaseResponse person(@PathVariable int start_id){
         List<Person> _result = _handler.GetPersonList(start_id);
+        _log.info("He");
         return new BaseResponse(RespCode.SUCCESS,_result);
     }
 
