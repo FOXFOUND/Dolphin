@@ -6,7 +6,6 @@ import org.facengineer.DaoMapper.FileDao;
 import org.facengineer.DaoMapper.PersonModel;
 import org.facengineer.Model.Person;
 import org.facengineer.PublicTools.*;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,16 +16,15 @@ import javax.servlet.http.HttpSession;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Login {
     private final PersonModel personModel;
-    private final FileDao fileDao;
 
-    public Login(PersonModel personModel, FileDao fileDao) {
+    public Login(PersonModel personModel) {
         this.personModel = personModel;
-        this.fileDao = fileDao;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public BaseResponse PersonLoginForm(@RequestParam(value = "name", required = true) String name,
                                         @RequestParam(value = "password", required = true) String pwd, HttpServletRequest http_request) {
+
         return LoginCheck(name, pwd,http_request);
     }
 

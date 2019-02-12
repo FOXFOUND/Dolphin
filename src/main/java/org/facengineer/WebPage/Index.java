@@ -3,13 +3,11 @@ package org.facengineer.WebPage;
 import org.facengineer.DaoMapper.FileDao;
 import org.facengineer.Model.FileModel;
 import org.facengineer.PublicTools.Configuration;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +21,7 @@ public class Index {
     }
 
     @RequestMapping(value = "/")
-    public String Index(Model model) {
+    public String Index(Model model,HttpServletRequest request) {
         List<FileModel> filelist = this.fd.GetFileList();
         List<String> FILE_COLUMNLIST = new ArrayList<>();
         for (String value : Configuration.SqlColumnsList.get("FILE")){

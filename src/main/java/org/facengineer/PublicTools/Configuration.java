@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Configuration {
-    public static final long EXPIRE_TIME = 1*60*1000;
+//    public static final long EXPIRE_TIME = 3*1000;
+    public static final long EXPIRE_TIME = 24*60*60*1000;
     public static final String TOKEN_SECRET = "1999.1979";
     public static Map<String,List<String>> SqlColumnsList;
 

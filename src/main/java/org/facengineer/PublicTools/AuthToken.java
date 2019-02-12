@@ -27,7 +27,7 @@ public class AuthToken {
         return TimeStamp;
     }
 
-    static class AuthPersonSignDecrypt {
+    public static class AuthPersonSignDecrypt {
         private DecodedJWT jwt = null;
 
         public DecodedJWT DeToken(final String token) {
@@ -36,7 +36,7 @@ public class AuthToken {
                 JWTVerifier verifier = JWT.require(Algorithm.HMAC256(Configuration.TOKEN_SECRET)).build();
                 jwt = verifier.verify(token);
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                new LOG(this.getClass()).info(e.getMessage());
             }
             return jwt;
         }
@@ -46,7 +46,13 @@ public class AuthToken {
         }
 
         public String GetUserName() {
-            return jwt.getClaim("USERNAME").asString();
+            String username = "anoymous";
+            try{
+                username = jwt.getClaim("USERNAME").asString();
+            }catch(Exception e){
+
+            }
+            return username;
         }
 
         public Date GetExpireTime() {
