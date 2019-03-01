@@ -8,6 +8,10 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Enumeration;
 
 public class PublicUtils {
     public static <T> T LinkedMapToObj(Object data, Class<T> _classname) {
@@ -38,4 +42,27 @@ public class PublicUtils {
         }
         return obj;
     }
+
+    public static String getHostIp(){
+        try{
+            Enumeration<NetworkInterface> allNetInterfaces = NetworkInterface.getNetworkInterfaces();
+            while (allNetInterfaces.hasMoreElements()){
+                NetworkInterface netInterface = (NetworkInterface) allNetInterfaces.nextElement();
+                Enumeration<InetAddress> addresses = netInterface.getInetAddresses();
+                while (addresses.hasMoreElements()){
+                    InetAddress ip = (InetAddress) addresses.nextElement();
+                    if (ip != null
+                            && ip instanceof Inet4Address
+                            && !ip.isLoopbackAddress()
+                            && ip.getHostAddress().indexOf(":")==-1){
+                        return ip.getHostAddress();
+                    }
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

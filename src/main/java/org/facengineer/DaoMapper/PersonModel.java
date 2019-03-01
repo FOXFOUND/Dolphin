@@ -20,9 +20,6 @@ public interface PersonModel {
     @Select("select password from USER where name = #{name}")
     String GetPasswordByName(@Param("name") String name);
 
-    @Insert("insert into USERTOKEN(USERNAME,TOKEN, START_TIME) values(#{username},#{token} ,#{start_time})")
-    public boolean SetTokenByName(@Param("username") String username , @Param("token") String token, @Param("start_time") long start_time);
-
     @Insert({
             "<script>" +
                     "insert into USER (name, password,email) values " +

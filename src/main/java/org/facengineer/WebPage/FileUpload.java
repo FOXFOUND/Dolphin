@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 import org.facengineer.DaoMapper.FileDao;
 import org.facengineer.Model.FileModel;
 import org.facengineer.PublicTools.Configuration;
+import org.facengineer.PublicTools.LOG;
+import org.facengineer.Services.UserAuth;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,7 +56,8 @@ public class FileUpload {
             filemodel.setUrl(Configuration.FILEPATH);
             filemodel.setFilename(fileName);
             filemodel.setSuffixname(suffixName);
-            fd.InsertFileValue(UploadFileName,suffixName,fileName,"http://localhost:8080/file/","tang");
+            String UploaderName = UserAuth.GetUserName(request);
+            fd.InsertFileValue(UploadFileName,suffixName,fileName,Configuration.DB_FileUploadUrl, UploaderName);
             return gson.toJson(filemodel);
         } catch (IllegalStateException e) {
             e.printStackTrace();

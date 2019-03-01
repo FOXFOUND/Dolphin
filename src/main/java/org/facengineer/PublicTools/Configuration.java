@@ -14,4 +14,5 @@ public class Configuration {
     //public static final String FILEPATH = "F:\\pictureqq";
     //For Linux
     public static final String FILEPATH = "/home/tang/IdeaProjects/FileDao/";
+    public static final String DB_FileUploadUrl = "http://localhost:8080/file/";
 }

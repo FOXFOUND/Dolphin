@@ -1,6 +1,7 @@
 package org.facengineer.WebRest;
 
 import org.facengineer.PublicTools.AuthToken;
+import org.facengineer.PublicTools.LOG;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,11 +27,12 @@ public class TokenTest {
         return decrypt_token.GetUserName();
     }
 
-    @RequestMapping(value = "/first", method = RequestMethod.GET)
+    @RequestMapping(value = "/first/", method = RequestMethod.GET)
     public Map<String, Object> firstResp (HttpServletRequest request){
         Map<String, Object> map = new HashMap<>();
-        request.getSession().setAttribute("request Url", request.getRequestURL());
-        map.put("request Url", request.getRequestURL());
+        HttpSession _session = request.getSession();
+        _session.setAttribute("REQUESTURL", request.getRequestURL());
+        map.put("REQUESTURL", request.getRequestURL());
         return map;
     }
 
@@ -39,6 +41,9 @@ public class TokenTest {
         Map<String, Object> map = new HashMap<>();
         map.put("sessionId", request.getSession().getId());
         map.put("message", GetUserName(request));
+        HttpSession _session = request.getSession();
+//        LOG.info("UserName is: " + _session.getAttribute("REQUESTURL"));
+        map.put("requesturl",_session.getAttribute("REQUESTURL"));
         return map;
     }
 }

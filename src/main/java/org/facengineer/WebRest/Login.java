@@ -2,7 +2,6 @@ package org.facengineer.WebRest;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.Gson;
-import org.facengineer.DaoMapper.FileDao;
 import org.facengineer.DaoMapper.PersonModel;
 import org.facengineer.Model.Person;
 import org.facengineer.PublicTools.*;
@@ -46,14 +45,20 @@ public class Login {
             person.setName(username);
             AuthToken AT = new AuthToken();
             String token = AT.AuthPersonSignEncrypt(username);
-            if (this.personModel.SetTokenByName(username, token, AT.GetTimeStamp())) {
-                person.setToken(token);
-                session.setAttribute("JSESSION",token);
-            }
-            response = new BaseResponse(RespCode.SUCCESS, person);
+            if (SetTokenByName(username, token, request,person))
+                response = new BaseResponse(RespCode.SUCCESS, person);
+            else
+                response = new BaseResponse(RespCode.SUCCESS, "Token Import ERROR");
         } else {
             response = new BaseResponse(RespCode.SUCCESS, "Password ERROR");
         }
         return response;
+    }
+
+    private boolean SetTokenByName(String username, String token, HttpServletRequest request, Person person) {
+        HttpSession _session = request.getSession();
+        person.setToken(token);
+        _session.setAttribute("JSESSION",token);
+        return true;
     }
 }

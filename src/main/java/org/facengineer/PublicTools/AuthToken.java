@@ -36,7 +36,7 @@ public class AuthToken {
                 JWTVerifier verifier = JWT.require(Algorithm.HMAC256(Configuration.TOKEN_SECRET)).build();
                 jwt = verifier.verify(token);
             } catch (Exception e) {
-                new LOG(this.getClass()).info(e.getMessage());
+                new LOG(this.getClass()).info("Decrypt Fails with message: " + e.getMessage());
             }
             return jwt;
         }
