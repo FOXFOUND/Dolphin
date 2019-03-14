@@ -20,6 +20,11 @@ public class Index {
         this.fd = fd;
     }
 
+    @RequestMapping(value = "/post")
+    public String Post(){
+        return "post";
+    }
+
     @RequestMapping(value = "/")
     public String Index(Model model,HttpServletRequest request) {
         List<FileModel> filelist = this.fd.GetFileList();
