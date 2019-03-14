@@ -9,23 +9,49 @@
     <script src="/js/jquery.form.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/bootstrap-notify.min.js"></script>
+    <script type="text/javascript">
+        function Uploadbutton() {
+            var notify = $.notify({
+                message: '<strong>Saving</strong> Do not close this page...'
+            });
+            var options = {
+                url: "/rtctrello/post/",
+                type: "post",
+                // dataType: "json",
+                success: function (data) {
+                    notify.update({
+                        'type': 'success',
+                        'message': '<strong>Success</strong> Your information has been saved!'
+                    });
+                    setTimeout(function () {
+                        document.getElementById("submitbutton").disabled = false;
+                    }, 5000);
+                    document.getElementById("submitbutton").disabled = true;
+                }
+            };
+            $("#infoupload").ajaxSubmit(options);
+        }
+    </script>
 </head>
 <body>
 <div class="container">
     <div class="col-xs-12 col-md-8">
         <h2>Rtc to Trello System</h2>
-        <form>
+        <form id="infoupload" method="POST" action="#">
             <div class="form-group">
                 <label for="exampleInputEmail1">Rtc Service UserName</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                       placeholder="Your Rtc UserName">
+                       placeholder="Your RTC UserName" name="rtcname">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Trello UserName</label>
-                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Your Trello UserName">
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Your Trello UserName" name="trelloname">
                 <!--<small id="emailHelp" class="form-text text-muted"></small>-->
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary pull-left" onclick="Uploadbutton();" id="submitbutton">Submit</button>
+                <button type="reset" class="btn btn-danger pull-left" style="margin-left: 10px">Reset</button>
+            </div>
         </form>
     </div>
     <div class="col-xs-6 col-md-4">
